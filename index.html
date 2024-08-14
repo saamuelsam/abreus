@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botão Fugitivo ABREUS</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            background-image: url(Imagem\ do\ WhatsApp\ de\ 2024-08-06\ à\(s\)\ 12.03.59_904cacea.jpg);
+            background-size: cover;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 10;
+            position: relative;
+        }
+
+        .yes {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .no {
+            background-color: #dc3545;
+            color: white;
+            position: absolute;
+        }
+
+        .leaf {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: -50px;
+            background-color: #228b22;
+            clip-path: polygon(50% 0%, 75% 25%, 100% 50%, 75% 75%, 50% 100%, 25% 75%, 0% 50%, 25% 25%);
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        #congratsMessage {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 24px;
+            text-align: center;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <h1>Me ver hoje?😏🔞</h1>
+        <button class="button yes" id="yesButton">Claro</button>
+        <button class="button no" id="noButton">sim</button>
+    </div>
+
+    <div id="congratsMessage">Parabéns!</div>
+
+    <script>
+        const noButton = document.getElementById('noButton');
+        const yesButton = document.getElementById('yesButton');
+        const congratsMessage = document.getElementById('congratsMessage');
+
+        noButton.addEventListener('mouseover', function() {
+            const randomX = Math.floor(Math.random() * (window.innerWidth - noButton.offsetWidth));
+            const randomY = Math.floor(Math.random() * (window.innerHeight - noButton.offsetHeight));
+
+            noButton.style.left = `${randomX}px`;
+            noButton.style.top = `${randomY}px`;
+        });
+
+        yesButton.addEventListener('click', function() {
+            for (let i = 0; i < 30; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'leaf';
+                leaf.style.left = `${Math.random() * window.innerWidth}px`;
+                leaf.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                leaf.style.opacity = Math.random();
+                document.body.appendChild(leaf);
+
+                // Remove the leaf after the animation ends
+                leaf.addEventListener('animationend', function() {
+                    leaf.remove();
+                });
+            }
+
+            // Exibir mensagem de parabéns
+            congratsMessage.style.display = 'block';
+
+            // Opcional: esconder a mensagem depois de alguns segundos
+            setTimeout(() => {
+                congratsMessage.style.display = 'none';
+            }, 5000); // Esconde após 5 segundos
+        });
+    </script>
+</body>
+</html>
